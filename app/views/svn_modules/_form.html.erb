@@ -1,0 +1,30 @@
+<%= form_for(@svn_module) do |f| %>
+  <% if @svn_module.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@svn_module.errors.count, "error") %> prohibited this svn_module from being saved:</h2>
+
+      <ul>
+      <% @svn_module.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_format %><br />
+    <%= f.text_field :tag_format %>
+    You can use the [VERSION] tag in your format such as 'RbxWebInterface-[VERSION]'
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,79 @@
+<div class="row">
+	<div class="span2">
+		<div class="well">
+			<strong>Instructions:</strong>
+			Select your component, enter a version, optionally enter a comment, and press the Tag button.
+		</div>
+		<div class="well">
+			<strong>Comments:</strong>
+			Leave the comment blank and SVN Tagger will automatically fill in a default comment for you.
+		</div>
+	</div>
+	<div class="span10">
+		<table class='table-striped'>
+			<tr>
+				<th>
+					Component				
+				</th>		
+				<th>
+					Version
+				</th>
+				<th>
+					Comment	(Optional)			
+				</th>		
+				<th>
+									
+				</th>				
+			</tr>
+
+			<% @modules.each do |m| %>
+				<tr>
+					<td>
+					<%= m.name %>
+					</td>
+					<td>
+						<%= select_tag "#{m.name}-version", options_from_collection_for_select(@versions, "version", "version") %>
+					</td>
+					<td>
+						<input type="text" id="<%= "#{m.name}-comment" %>"></input>
+					</td>
+					<td>
+						<button class='btn-small btn-primary tag' data-component='<%= m.name %>' data-id='<%= m.id %>'>Tag</button>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+</p>
+
+<script type="text/javascript">
+	$(".tag").on("click", tagModule);
+	
+	function tagModule(){
+		module = $(this).data("component");
+		id = $(this).data('id');
+		comment = $("#" + module + "-comment").val(); 
+		version = $("#" + module + "-version").val();
+		
+		if( confirm("Are you sure you want to tag '" + module + "' with '" + version + "'?") ){	
+			$.ajax({
+				url: '/tag/tag_module',
+				dataType: 'json',
+				data: { id : id, comment : comment, version : version},
+				success: function(data, textStatus, jqXHR) {
+					if(data.response) {
+						alert(data.message);
+					}
+					else {
+						alert("Sorry, we couldn't tag your component. " + data.message);
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert("Sorry, could not tag your component. Error: " + jqXHR.status);
+				}
+			});
+		
+		}			
+	}
+</script>

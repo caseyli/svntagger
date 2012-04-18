@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Svntagger</title>
+  <%= stylesheet_link_tag :all %>
+  
+  <%= javascript_include_tag 'prototype.js', 'effects.js', 'dragdrop.js', 'controls.js', 'application.js' %>
+  <%= javascript_include_tag 'jquery-1.7.1.min.js' %>
+  <%= javascript_include_tag 'bootstrap.min.js' %>
+  <%= javascript_include_tag 'rails.js' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div class="navbar">
+    	<div class="navbar-inner">
+    		<div class="container">
+    			<ul class="nav">
+				  <li><a href="/">Home</a></li>
+				  <li><a href="/svn_modules">Manage Modules</a></li>
+				  <li><a href="/versions">Manage Versions</a></li>
+				  <li><a href="/logs">Logs</a></li>
+				</ul>
+    		</div>
+   		</div>
+	</div>
+	<div class="container">
+		<%= image_tag 'logo.png', :class => 'company-logo' %>
+		<p><strong>SVN Tagger</strong>: A simple tool to tag the SVN modules.</p>
+		<% if !flash[:success].blank? %>
+			<div class="alert alert-success">
+				<a class="close" data-dismiss="alert">*</a>
+		  		<%= flash[:success] %>
+			</div>
+		<% end %>
+		<p>
+		<%= yield %>
+	</div>
+
+</body>
+</html>

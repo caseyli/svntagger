@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @svn_module.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @svn_module.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_svn_module_path(@svn_module) %> |
+<%= link_to 'Back', svn_modules_path %>

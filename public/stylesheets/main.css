@@ -1,0 +1,18 @@
+table.tag-table tr td {
+	padding: 20px;
+	background-color: #eeeeee;
+}
+
+table tr td {
+	padding: 10px;
+	background-color: #eeeeee;
+	vertical-align: middle;
+}
+
+table tr td form {
+	padding-top: 25px
+}
+
+.company-logo {
+	height: 80px;
+}

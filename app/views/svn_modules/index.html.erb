@@ -1,0 +1,27 @@
+<h1>SVN Modules</h1>
+
+<table class='table-striped'>
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Tag Format</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @svn_modules.each do |svn_module| %>
+  <tr>
+    <td><%= svn_module.name %></td>
+    <td><%= svn_module.url %></td>
+    <td><%= svn_module.tag_format %></td>
+    <td><%= link_to 'Show', svn_module %></td>
+    <td><%= link_to 'Edit', edit_svn_module_path(svn_module) %></td>
+    <td><%= button_to 'Destroy', svn_module, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Svn module', new_svn_module_path %>
